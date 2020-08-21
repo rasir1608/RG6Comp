@@ -4,8 +4,7 @@
     "start": "umi dev --port=8001",
     "build": "umi build",
     "test": "umi test",
-    "lint": "eslint {src,mock,tests}/**/*.{ts,tsx} --fix",
-    "precommit": "lint-staged"
+    "lint": "eslint {src,mock,tests}/**/*.{ts,tsx} --fix"
   },
   "dependencies": {
     "@antv/g6": "3.5.10",
