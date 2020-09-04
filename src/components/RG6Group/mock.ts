@@ -1,4 +1,4 @@
-import { NodeModalItem } from './index.d';
+import { NodeModalItem } from './interface';
 const [nodeWidth, nodeHeight] = [150, 40];
 export const raGroupConfig: NodeModalItem = {
   type: 'RaGroupDemo',

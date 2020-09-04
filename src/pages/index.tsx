@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import RG6Comp from '@/components/RG6Comp';
-import { raGroupConfig } from '@/components/RG6Comp/mock';
-
+import RG6Group from '@/components/RG6Group';
+import { raGroupConfig } from '@/components/RG6Group/mock';
+import { getMockNodesAndEdges } from './__mock__/nodeData';
 const data = {
   // 点集
   nodes: [
@@ -109,10 +109,12 @@ const data = {
     },
   ],
 };
-export default function () {
+export default function() {
+  // const { nodes, edges } = getMockNodesAndEdges(1000, 500);
+  // console.log(114, nodes, edges);
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <RG6Comp
+      <RG6Group
         nodes={data.nodes}
         edges={data.edges}
         // nodeConfigs={[raGroupConfig]}

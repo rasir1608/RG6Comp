@@ -1,4 +1,4 @@
-import { NodeModalItem, BehiverConfig, Point } from './index.d';
+import { NodeModalItem, BehiverConfig, Point } from './interface';
 const [nodeWidth, nodeHeight, padding] = [150, 40, 10];
 export const raGroupConfig: NodeModalItem = {
   type: 'RaGroup',

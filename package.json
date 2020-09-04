@@ -9,8 +9,8 @@
   "dependencies": {
     "@antv/g6": "3.5.10",
     "@types/dagre": "^0.7.43",
-    "antd": "^3.19.5",
     "dagre": "^0.8.5",
+    "antd": "^3.19.5",
     "dva": "^2.6.0-beta.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

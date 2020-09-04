@@ -9,7 +9,7 @@ import {
   Point,
   Item,
   BehiverConfig,
-} from './index.d';
+} from './interface';
 import { raGroupConfig, raNodeConfig, raGroupDragBehivor } from './initData';
 const [nodeWidth, nodeHeight] = [150, 40];
 interface addShapProps {
@@ -79,7 +79,13 @@ function addShaps({
 }
 
 export function registerNodeFun(modelConfig: NodeModalItem) {
-  const { type, shap, anchorPoints = {} as any, adjustNode, onStateChange } = modelConfig;
+  const {
+    type,
+    shap,
+    anchorPoints = {} as any,
+    adjustNode,
+    onStateChange,
+  } = modelConfig;
   G6.registerNode(type, {
     draw(cfg: ModelCfg, group: GroupModel) {
       const keyShape = addShaps({
@@ -114,10 +120,15 @@ export function registerNodeFun(modelConfig: NodeModalItem) {
         this.adjustNode(cfg, group);
       }
     },
-    setState(name: string | undefined, value: string | boolean | undefined, item: Item) {
+    setState(
+      name: string | undefined,
+      value: string | boolean | undefined,
+      item: Item,
+    ) {
       const group = item.getContainer();
       const cfg = item.getModel();
-      onStateChange && onStateChange(item, cfg, group.getChildren(), this.graph);
+      onStateChange &&
+        onStateChange(item, cfg, group.getChildren(), this.graph);
     },
     adjustNode(cfg: ModelCfg, group: GroupModel) {
       if (adjustNode) {

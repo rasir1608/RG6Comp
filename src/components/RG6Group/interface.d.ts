@@ -1,24 +1,36 @@
 // import { GraphOptions } from '@antv/g6/lib/interface/graph';
-import { GraphData, NodeConfig, EdgeConfig, ModelConfig, GraphOptions } from '@antv/g6/lib/types';
+import {
+  GraphData,
+  NodeConfig,
+  EdgeConfig,
+  ModelConfig,
+  GraphOptions,
+} from '@antv/g6/lib/types';
 import Edge from '@antv/g6/lib/item/edge';
 import Node from '@antv/g6/lib/item/node';
 import Group from '@antv/g-canvas/lib/group';
-export type ModelCfg = ModelConfig & { [key: string]: any };
+export type ModelCfg = Omit<ModelConfig, 'text'> & {
+  text?: BaseValue;
+  [key: string]: any;
+};
 export type GroupModel = Group;
+export interface Grap {}
+export interface GrapInst {}
 type EleType = 'node' | 'edge';
+type GraphNodeCfg = {
+  nodeWidth?: number;
+  nodeHeight?: number;
+  nodePadding?: number;
+};
+type GraphDagreCfg = {
+  rankdir?: string; // 可选，默认为图的中心
+  align?: string; // 可选
+  nodesep?: number;
+  ranksep?: number;
+};
 export interface GrapConfig extends GraphOptions {
-  nodeCfg?: {
-    nodeWidth?: number;
-    nodeHeight?: number;
-    nodePadding?: number;
-  };
-  dagreCfg?: {
-    rankdir?: string; // 可选，默认为图的中心
-    align?: string; // 可选
-    nodesep?: number;
-    ranksep?: number;
-  };
-
+  nodeCfg?: GraphNodeCfg;
+  dagreCfg?: GraphDagreCfg;
   toolTip?: boolean | ((item: Item) => string);
   [key: string]: any;
 }
@@ -30,8 +42,6 @@ export type NodeData = {
   [key: string]: any;
 };
 export type EdgeData = { source: string; target: string; [key: string]: any };
-export interface Grap {}
-export interface GrapInst {}
 export interface Point {
   x: number;
   y: number;
@@ -74,7 +84,12 @@ export interface NodeModalItem {
   type: string;
   shap?: NodeShape;
   adjustNode?: (node: ModelCfg, shaps: any[], grap: Grap) => void;
-  onStateChange?: (nodeItem: Item, node: ModelCfg, shaps: any[], grap: Grap) => void;
+  onStateChange?: (
+    nodeItem: Item,
+    node: ModelCfg,
+    shaps: any[],
+    grap: Grap,
+  ) => void;
   anchorPoints?:
     | boolean
     | {

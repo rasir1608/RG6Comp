@@ -1,5 +1,5 @@
 import dagre from 'dagre';
-import { EdgeData, NodeData } from './index.d';
+import { EdgeData, NodeData } from './interface';
 const nodesMap: any = {};
 const edgesMap: any = {};
 const [defaultNW, defaultNH, defaultPd] = [150, 40, 10];
@@ -23,7 +23,11 @@ export function fixWH(
   if (titleHeight === undefined) nodeModel.titleHeight = nodeHeight;
 }
 // 自动布局
-export function getAutoLayout(nodes: NodeData[] = [], edges: EdgeData[] = [], cfg: any = {}) {
+export function getAutoLayout(
+  nodes: NodeData[] = [],
+  edges: EdgeData[] = [],
+  cfg: any = {},
+) {
   if (nodes.length === 0)
     return {
       nodes: [],
@@ -116,7 +120,11 @@ function getPolyEdges(nodes: NodeData[], edges: EdgeData[]): EdgeData[] {
 }
 
 // 整理数据
-export function arrangmenNodeData(nodes: NodeData[] = [], nwd: Nwd = {}, preNode?: any) {
+export function arrangmenNodeData(
+  nodes: NodeData[] = [],
+  nwd: Nwd = {},
+  preNode?: any,
+) {
   nodes?.forEach(node => {
     let isGroup = node.isGroup;
     if (isGroup === undefined) {
@@ -128,7 +136,9 @@ export function arrangmenNodeData(nodes: NodeData[] = [], nwd: Nwd = {}, preNode
     }
     let cfg = { ...nwd };
     if (preNode) {
-      cfg.nodeWidth = preNode.width ? preNode.width - (cfg.padding || defaultPd) * 2 : undefined;
+      cfg.nodeWidth = preNode.width
+        ? preNode.width - (cfg.padding || defaultPd) * 2
+        : undefined;
       node.gid = preNode.id;
     }
     node.type = type;
